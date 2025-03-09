@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>00957033</title>
+    <style type="text/css">
+        body {
+            font-family: Perpetua;
+            font-size: 1.3em;
+        }
+
+        p::first-letter {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Advanced Web Form</h3><br>
+
+    <form method="post" action=" https://ntouweb2021.herokuapp.com/" autocomplete="on">
+
+        <p>
+            <label>Your name:
+                <input type="text" name="fullname" style="color: blue;
+                font-weight: 600;" autofocus />
+            </label>
+        </p>
+
+        <p>
+            <label>Your email:
+                <input type="email" name="email" style="color: blue;
+                font-weight: 600;" placeholder="name@domain.com" required /> (name@domain.com)
+            </label>
+        </p>
+
+        <p>
+            <label>Your homepage's URL:
+                <input type="url" name="url" style="color: blue;
+                font-weight: 600;" placeholder="http://www.domainname.com" />
+                (http://www.domainname.com)
+            </label>
+        </p>
+
+        <p>
+            <label>Your birthdate:
+                <input type="date" name="date" style="color: blue;
+                font-weight: 600;" />
+                (yyyy-mm-dd)
+            </label>
+        </p>
+
+        <p>
+            <label>Your favorite color:
+                <input type="color" name="color" value="#0000FF" />
+            </label>
+        </p>
+
+        <p>
+            <label>Your Department:
+                <input type="text" name="department" style="color: blue;
+                font-weight: 600;" list="department" placeholder="please select">
+                <datalist id="department">
+                    <option value="Department of Aquaculture">
+                    <option value="Department of Bioscience and Biotechnology">
+                    <option value="Department of Communications, Navigation and Control Engineering">
+                    <option value="Department of Computer Science and Engineering">
+                    <option value="Department of Electrical Engineering">
+                    <option value="Department of Environmental Biology and Fisheries Science">
+                    <option value="Department of Food Science">
+                    <option value="Department of Harbor and River Engineering">
+                    <option value="Department of Marine Engineering">
+                    <option value="Department of Marine Environmental Informatics">
+                    <option value="Department of Mechanical and Mechatronic Engineering">
+                    <option value="Department of Merchant Marine">
+                    <option value="Department of Optoelectronics and Materials Technology">
+                    <option value="Department of Shipping and Transportation Management">
+                    <option value="Department of Systems Engineering and Naval Architecture">
+                    <option value="Department of Transportation Science">
+
+
+                </datalist>
+
+            </label>
+        </p>
+
+        <p>
+            <strong><em>Check off all of the characteristics that you enjoyed about the
+                    college:</em></strong><br>
+
+            <label>
+                <input name="likes" type="checkbox" style="color:blue" value="Campus">Campus
+            </label>
+            <label><input name="likes" type="checkbox" style="color: blue" value="Students">Students
+
+            </label>
+            <label><input name="likes" type="checkbox" style="color: blue" value="Location">Location
+            </label>
+
+        </p>
+
+        <p>
+            <strong><em>How did you become interested in our college?</em></strong><br>
+
+            <label>
+                <input name="interest" type="radio" style="color: blue;
+                font-weight: 600;" value="Friends" checked>Friends</label>
+            <label>
+                <input name="interest" type="radio" style="color: blue;
+                font-weight: 600;" value="Television">Television</label>
+            <label>
+                <input name="interest" type="radio" style="color: blue;
+                font-weight: 600;" value="Internet">Internet</label>
+
+        </p>
+
+
+        <input type="submit" style="color:firebrick" value="Submit">
+        <input type="reset" style="color:firebrick" value="Clear" />
+
+
+
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "exercise-10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chatAPI-partial.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

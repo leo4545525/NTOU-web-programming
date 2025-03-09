@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>00957033-HW-6-2</title>
+    <style type="text/css">
+         li { display: inline; margin-right: 10px; }
+         ul { margin: 0; }
+
+        div {
+            color: navy;
+            font-size: 120%;
+            font-family: Helvetica, "Microsoft YaHei", "LiHei Pro", TW-Kai;
+        }
+    </style>
+
+<body>
+    <form action="#">
+        <input id="rollButton" type="button" value="Roll Dice">
+        <input id="onecolor" type="button" value="Shortcut">
+        <input id="18ra" type="button" value="Shortcut2">
+    </form>
+    <ol>
+        <li><img id="die1" src="blank.png" alt="blank image"></li>
+        <li><img id="die2" src="blank.png" alt="blank image"></li>
+        <li><img id="die3" src="blank.png" alt="blank image"></li>
+        <li><img id="die4" src="blank.png" alt="blank image"></li>
+        <div id="data"></div>
+    </ol>
+    <script>
+        // variables used to interact with the img elements
+        var die1Image;
+        var die2Image;
+        var die3Image;
+        var die4Image;
+        var fixedvalue;
+        var fixedvalue2;
+        var cnt = 0;
+        var dicenumber_count = [, 0, 0, 0, 0, 0, 0];
+        var score;
+        // register button listener and get the img elements
+        function start() {
+            document.getElementById("rollButton").addEventListener("click", rollDice_random, false);
+            document.getElementById("onecolor").addEventListener("click", rollDice_onecolor, false);
+            document.getElementById("18ra").addEventListener("click", rollDice_18ra, false);
+            die1Image = document.getElementById("die1");
+            die2Image = document.getElementById("die2");
+            die3Image = document.getElementById("die3");
+            die4Image = document.getElementById("die4");
+        } // end function start
+
+
+
+        // roll the dice
+        function rollDice_random() {
+            setImage(die1Image);
+            setImage(die2Image);
+            setImage(die3Image);
+            setImage(die4Image);
+        } // end function rollDice
+
+        function rollDice_onecolor() {
+            fixedvalue = Math.floor(1 + Math.random() * 6);
+            setonecolor(die1Image);
+            setonecolor(die2Image);
+            setonecolor(die3Image);
+            setonecolor(die4Image);
+        } // end function rollDice
+
+        function rollDice_18ra() {
+            fixedvalue = Math.floor(1 + Math.random() * 6);
+            fixedvalue2 = Math.floor(1 + Math.random() * 6)
+            if (fixedvalue == fixedvalue2) {
+                rollDice_18ra();
+            }
+            else {
+                if (fixedvalue > fixedvalue2) {
+                    score = 2 * fixedvalue;
+                }
+                else {
+                    score = 2 * fixedvalue2;
+                }
+                set18ra(die1Image);
+                set18ra(die2Image);
+                set18ra(die3Image);
+                set18ra(die4Image);
+            }
+        } // end function rollDice
+
+
+        // set src and alt attributes for a die
+        function setImage(dieImg) {
+            var dieValue = Math.floor(1 + Math.random() * 6);
+            dicenumber_count[dieValue]++;
+            dieImg.setAttribute("src", "die" + dieValue + ".png");
+            dieImg.setAttribute("alt",
+                "die image with " + dieValue + " spot(s)");
+        } // end function setImage
+        
+        console.log(dicenumber_count[0]);
+        console.log(dicenumber_count[1]);
+        console.log(dicenumber_count[2]);
+        console.log(dicenumber_count[3]);
+        console.log(dicenumber_count[4]);
+        console.log(dicenumber_count[5]);
+        console.log(dicenumber_count[6]);
+
+        function setonecolor(dieImg) {
+            dieImg.setAttribute("src", "die" + fixedvalue + ".png");
+            document.getElementById("data").innerHTML = '<div>Congratulations! Your roll is "一色"<br><img src="congrats.jpg"><br>You are win!!</div>'
+        }
+
+        function set18ra(dieImg) {
+            cnt++;
+            if (cnt <= 2) dieImg.setAttribute("src", "die" + fixedvalue + ".png");
+            else dieImg.setAttribute("src", "die" + fixedvalue2 + ".png")
+            document.getElementById("data").innerHTML = '<div>Congratulations! Your roll is "十八"<br><img src="congrats.jpg"><br>Your score is ' + score + ' !</div>';
+
+        }
+        
+        //for (let i = 1; i < dicenumber_count.length; i++) { }
+
+        //document.getElementById("data").innerHTML = '<div>Congratulations! Your roll is "一色"</div>'
+        //document.getElementById("data").innerHTML = '<div>Oops! Your roll is "無面"</div>'
+        //document.getElementById("data").innerHTML = "<div>NO decision,please re-roll the dice!</div>"
+
+        window.addEventListener("load", start, false);
+    </script>
+    </head>
+
+
+</body>
+
+</html>

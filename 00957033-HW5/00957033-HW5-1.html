@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Basic DOM</title>
+	<style type="text/CSS">
+		@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+        h1 {
+			font-size: 50px;
+			font-family: cwTeXYen;
+		}
+
+		div {
+			font-size: 80px;
+			font-family: Consolas;
+			margin: 5px;
+			float: left;
+		}
+		div.number {
+			border:  solid dodgerblue;			
+			color: dodgerblue;
+		}
+		
+	</style>
+</head>
+
+<h1>四則運算結果:</h1>
+<div class="number" id="num1"></div>
+<div id="op"></div>
+<div class="number" id="num2"></div>
+<div>=</div>
+<div class="number" id="result"></div>
+
+<script>
+	var operator, num1, value1, num2, value2, res;
+	operator = window.prompt("請輸入算數運算子：1 代表加(+)、2 代表減(-)、3 代表乘(*)、4 代表除(/)");
+	if (operator >= 1 && operator <= 4) { }
+	else {
+		window.alert("輸入有誤！選項自動設為1。")
+		operator = 1;
+	}
+
+	num1 = window.prompt("請輸入第一個數字:");
+	value1 = parseInt(num1);
+	if (!isFinite(num1)) {
+		window.alert("輸入有誤！選項自動設為0。")
+		value1 = 0;
+	}
+
+	console.log(num1);
+	console.log(value1);
+
+	num2 = window.prompt("請輸入第二個數字:");
+	value2 = parseInt(num2);
+	if (!isFinite(num2)) {
+		window.alert("輸入有誤！選項自動設為0。")
+		value2 = 0;
+	}
+	console.log(num2);
+	console.log(value2);
+
+	switch (operator) {
+
+		case "1":
+			res = value1 + value2;
+			break;
+
+		case "2":
+			res = value1 - value2;
+			break;
+
+		case "3":
+			res = value1 * value2;
+			break;
+
+		case "4":
+			res = value1 / value2;
+			break;
+
+	}
+	console.log(res);
+
+	document.getElementById("num1").innerHTML = value1;
+
+
+	if (operator == 1) document.getElementById("op").innerHTML = "+";
+	else if (operator == 2) document.getElementById("op").innerHTML = "-";
+	else if (operator == 3) document.getElementById("op").innerHTML = "*";
+	else if (operator == 4) document.getElementById("op").innerHTML = "/";
+
+	document.getElementById("num2").innerHTML = value2;
+
+
+	document.getElementById("result").innerHTML = res;
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

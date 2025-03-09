@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Pin Pictures</title>
+	<style type="text/CSS">
+		div.nav {
+			border: 1px solid skyBlue;
+			margin-left: 3px;
+			padding: 3px;
+			float: left;
+		}
+		input, p, li {
+			font-family: Helvetica, "Microsoft YaHei", "LiHei Pro", TW-Kai;
+		}
+		li {
+			font-size: 12px;
+		}
+		img.picture {
+			position: absolute;
+		}	
+	</style>
+	<script type="text/javascript">
+
+		let z_index = 2; //插入圖層初始為2
+
+		function add() {
+
+			let pic_index = document.getElementById("pic").value;
+			let x_place = document.getElementById("x").value;
+			let y_place = document.getElementById("y").value;
+
+			if (pic_index == 10) {
+				let data = { index: pic_index, left: x_place + 'px', position: 'absolute', top: y_place + 'px', 'z-index': z_index };
+				let date = new Date();
+				let milisec = date.getTime();
+				let myJSON = JSON.stringify(data);
+				localStorage.setItem("photo-" + milisec, myJSON);
+
+			}
+			else {
+				let data = { index: "0" + pic_index, left: x_place + 'px', position: 'absolute', top: y_place + 'px', 'z-index': z_index };
+				let date = new Date();
+				let milisec = date.getTime();
+				let myJSON = JSON.stringify(data);
+				localStorage.setItem("photo-" + milisec, myJSON);
+			}
+
+
+			let photo = document.getElementById("photo");
+			let image = document.createElement("img");//創造一個img tag
+			if (pic_index == 10) {
+				image.setAttribute("src", pic_index + ".png");
+
+			}
+			else {
+				image.setAttribute("src", "0" + pic_index + ".png");
+			}
+			let NewPhoto_style = "left:" + x_place + "px;" + "position: absolute;" + "top:" + y_place + "px;" + "z-index:" + z_index + ";";
+			image.setAttribute("style", NewPhoto_style);
+			z_index++;
+
+			photo.appendChild(image);
+		}
+
+		function loadImg() {
+			let length = localStorage.length; // number of key-value pairs
+			//if(length==0) z_index=2;
+			//console.log(length);
+			tags = []; // create empty array
+			// load all keys
+			for (let i = 0; i < length; ++i) {
+				tags[i] = localStorage.key(i);
+			} // end for
+
+			for (let tag in tags) {
+				let txt = localStorage.getItem(tags[tag]);
+				let obj = JSON.parse(txt);
+				let obj_z_index = obj['z-index'];
+				//console.log(obj_z_index);
+				if (obj_z_index > z_index) z_index = obj_z_index; //將z_index設為目前所有已存在的圖片裡最大的z-index 
+				let photo = document.getElementById("photo");
+				let image = document.createElement("img");//創造一個img tag
+				image.setAttribute("src", obj.index + ".png");
+				let NewPhoto_style = "left:" + obj.left + ";position: absolute; top:" + obj.top + ";z-index:" + obj['z-index'] + ";";
+				image.setAttribute("style", NewPhoto_style);
+				photo.appendChild(image);
+
+
+			} // end for
+			z_index++; // z_index 變數加一即會是下一個新增的圖片應該要有的 z-index
+		}
+
+
+		function clearImg() {
+			localStorage.clear();
+			document.getElementById("photo").innerHTML = "";
+			z_index = 2;
+		}
+		addEventListener("load", loadImg, false);
+	</script>
+</head>
+
+<body>
+	<img src="blackboard.jpg" height="600" width="800" style="float:left; z-index:0;" />
+	<img id="img-0" class="picture" style="top: 50px; left: 50px; z-index:1;" src="00.png" draggable="true" />
+	<div id="photo"></div>
+	<div id="nav" class="nav">
+		<form action="#">
+			<p>
+				<label>要放哪個道具圖片(請輸入編號):
+					<input type="number" id="pic" min="1" max="10" step="1" value="1" />
+				</label><br />
+				<label>圖片X座標:
+					<input type="number" id="x" min="40" max="600" step="1" value="40" />
+				</label><br />
+				<label>圖片Y座標:
+					<input type="number" id="y" min="40" max="400" step="1" value="100" />
+				</label>
+			</p>
+			<p>
+				<input type="button" value="新增圖片" onclick="add()" id="addButton">
+				<input type="button" value="移除所有圖片" onclick="clearImg()" id="removeAllButton">
+			</p>
+		</form>
+		<ul>
+			<li>[01]任意門</li>
+			<li>[02]時光機</li>
+			<li>[03]竹蜻蜓</li>
+			<li>[04]時光布</li>
+			<li>[05]記憶麵包</li>
+			<li>[06]縮小燈</li>
+			<li>[07]翻譯蒟蒻</li>
+			<li>[08]如果電話亭</li>
+			<li>[09]穿透環</li>
+			<li>[10]更衣照相機</li>
+		</ul>
+	</div>
+</body>
+
+</html>

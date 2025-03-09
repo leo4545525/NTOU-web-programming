@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Triangle or Square Baseball</title>
+</head>
+<body>
+    Side Length(<=10):<input type="number" id="SideLength" value="5">
+        <input  type="button" id="Triangle" value="Draw Baseball Triangle" onclick="DrawTriangle()"/> 
+        <input  type="button" id="Square" value="Draw Baseball Square"  onclick="DrawSquare()"/>
+        <hr>
+        <div id="photo"></div>
+
+<script>
+    
+    
+    function DrawTriangle() {
+        let SideLength = document.getElementById("SideLength").value;
+        let photo = document.getElementById("photo");
+        if (SideLength < 0 || SideLength > 10) {
+            window.alert("You input an invalid value!!")
+            SideLength = 5;
+        }
+
+        for (let i = 0; i < SideLength -1; i++) {
+            for (let j = i; j < SideLength  -1; j++) {
+                let image=document.createElement("img");//創造一個img tag
+                image.setAttribute("src","blank.png");
+                image.setAttribute("width", "50px");
+                image.setAttribute("height", "50px");
+                photo.appendChild(image);
+                if(j==SideLength-2)
+                {
+                    for(let k=0;k<i+1;k++)
+                    {
+                        let image=document.createElement("img");//創造一個img tag
+                        image.setAttribute("src","baseball.jpg");
+                        image.setAttribute("width", "50px");
+                        image.setAttribute("height", "50px");
+                        photo.appendChild(image);
+                    }
+                        let br=document.createElement("br");
+                        photo.appendChild(br);
+                }
+            }
+       
+        }
+
+        for(let i=0;i<SideLength;i++)
+        {
+            let image=document.createElement("img");//創造一個img tag
+            image.setAttribute("src","baseball.jpg");
+            image.setAttribute("width", "50px");
+            image.setAttribute("height", "50px");
+            photo.appendChild(image);
+        }
+            let br=document.createElement("br");
+            photo.appendChild(br);
+            
+            document.body.appendChild(photo);
+    }
+
+    function DrawSquare() {
+        let SideLength = document.getElementById("SideLength").value;
+        let photo = document.getElementById("photo");
+        
+
+        if (SideLength < 0 || SideLength > 10) {
+            window.alert("You input an invalid value!!")
+            SideLength = 5;
+        }
+        for (let i = 0; i < SideLength; i++) {
+            for (let j = 0; j < SideLength; j++) {
+                let image=document.createElement("img");//創造一個img tag
+                image.setAttribute("src","baseball.jpg");
+                image.setAttribute("width", "50px");
+                image.setAttribute("height", "50px");
+                photo.appendChild(image);
+                
+            }
+
+            let br=document.createElement("br");
+            photo.appendChild(br);
+        }
+      
+        document.body.appendChild(photo);
+        
+    }
+
+</script>
+
+
+</body>
+
+</html>

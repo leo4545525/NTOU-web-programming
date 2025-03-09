@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Doraemon</title>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+        img {
+            width: 300px;
+            height: 300px;
+        }
+
+		div, input {
+            font-family: Noto Sans TC, Perpetua, serif;
+			width: 300px;            
+        }
+		
+		div {
+            color: darkblue;
+            text-align: center;	
+			font-size: 24px;			
+        }
+
+		input {
+			font-size: 18px;
+			font-weight: bold;
+		}
+    </style>
+    <script>
+        let tools=["任意門","時光機","竹蜻蜓","時光布","記憶麵包","縮小燈","翻譯蒟蒻", "如果電話亭" ,"穿透環","更衣照相機"];
+        let index=["01","02","03","04","05","06","07","08","09","10"]; 
+        
+        function playsound()
+        {
+            document.getElementById( "accessory" ).setAttribute("src","blank.png");
+            document.getElementById( "messages" ).innerHTML="";
+
+            /*let audio=document.getElementById( "doraemon" );
+            audio.play();
+            audio.addEventListener("ended", change_all, false);*/
+
+            document.getElementById( "doraemon" ).play();
+            document.getElementById( "doraemon" ).addEventListener("ended", change_all, false); //兩種皆可
+        }
+
+        function change_all()
+        {
+            let random_value = Math.floor(Math.random() * 10);
+            document.getElementById( "accessory" ).setAttribute("src",index[random_value] + ".png");
+            document.getElementById( "messages" ).innerHTML="<p>您抽到" + tools[random_value] + "!</p>";
+
+        }
+
+    </script>
+</head>
+
+<body>
+    
+    <img id="accessory" src="00.png" alt="accessory">
+    <form action="#">
+        <input id="play" type="button" value="抽道具" onclick="playsound()">
+        <audio id="doraemon" src="doraemon.mp3" ></audio>
+    </form>
+    <div id="messages">請按下Button抽出道具</div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>00957033HW4-2</title>
+
+    <script>
+        let value1, value2, tmp;
+        value1 = window.prompt("Please input the Pokemon you like (1=pikachu, 2=bulbasaur, 3=charmander, 4=squirtle, 5=random):", "1");
+        if (value1 > 5 || value1 < 1) window.alert("Wrong input! Please press [F5] to reload the page!");
+        value2 = window.prompt("Please input the side length (>=1 and <=10):", "5");
+        if (value2 > 10 || value2 < 1) window.alert("Wrong input! Please press [F5] to reload the page!");
+        for (let i = 0; i < value2; i++) {
+            for (let j = 0; j < value2; j++) {
+                tmp = Math.floor(Math.random() * 4) + 1;//產生1~4 math.random取值範圍在0<=X<1
+                if (j == value2 - 1 && value1 == 1)
+                    document.write('<img src="pikachu.png" width="100px" height="100px"><br>');
+                else if (j != value2 - 1 && value1 == 1) document.write('<img src="pikachu.png" width="100px" height="100px">');
+
+                if (j == value2 - 1 && value1 == 2)
+                    document.write('<img src="bulbasaur.png" width="100px" height="100px"><br>');
+                else if (j != value2 - 1 && value1 == 2) document.write('<img src="bulbasaur.png" width="100px" height="100px">');
+
+                if (j == value2 - 1 && value1 == 3)
+                    document.write('<img src="charmander.png" width="100px" height="100px"><br>');
+                else if (j != value2 - 1 && value1 == 3) document.write('<img src="charmander.png" width="100px" height="100px">');
+
+                if (j == value2 - 1 && value1 == 4)
+                    document.write('<img src="squirtle.png" width="100px" height="100px"><br>');
+                else if (j != value2 - 1 && value1 == 4) document.write('<img src="squirtle.png" width="100px" height="100px">');
+
+                if (j == value2 - 1 && value1 == 5) {
+                    if (tmp == 1) document.write('<img src="pikachu.png" width="100px" height="100px"><br>');
+                    if (tmp == 2) document.write('<img src="bulbasaur.png" width="100px" height="100px"><br>');
+                    if (tmp == 3) document.write('<img src="charmander.png" width="100px" height="100px"><br>');
+                    if (tmp == 4) document.write('<img src="squirtle.png" width="100px" height="100px"><br>');
+                }
+
+                else if (j != value2 - 1 && value1 == 5) {
+                    if (tmp == 1) document.write('<img src="pikachu.png" width="100px" height="100px">');
+                    if (tmp == 2) document.write('<img src="bulbasaur.png" width="100px" height="100px">');
+                    if (tmp == 3) document.write('<img src="charmander.png" width="100px" height="100px">');
+                    if (tmp == 4) document.write('<img src="squirtle.png" width="100px" height="100px">');
+                }
+            }
+        }
+
+
+
+
+    </script>
+
+</head>
+
+<body></body>
+
+</html>

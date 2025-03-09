@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Local Storage</title>
+    <style type="text/CSS">
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: lightblue;
+            font-family: Perpetua;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            padding: 4px;
+        }
+
+        th {
+            text-align: center;
+            color: white;
+            background-color: darkblue;
+        }
+
+        tr.oddrow {
+            background-color: white;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+
+        
+        function saveSearch() {
+
+            let Title = document.getElementById("Title").value;
+            let Author = document.getElementById("Author").value;
+            let Year = document.getElementById("Year").value;
+            let URL = document.getElementById("URL").value;
+
+            let date = new Date();
+            let milisec = date.getTime();
+
+            let data = new Object();
+
+            data.title = Title;
+            data.author = Author;
+            data.year = Year;
+            data.url = URL;
+
+            let myJSON = JSON.stringify(data);
+            localStorage.setItem("ntou-" + milisec, myJSON);
+            loadSearches();
+        }
+
+        function loadSearches() {
+            let length = localStorage.length; // number of key-value pairs
+            let cnt=0;
+            tags = []; // create empty array
+            let output = "<table><tr><th>Title</th><th>Author</th><th>Year</th><th>URL</th></tr>";
+            // load all keys
+            for (let i = 0; i < length; ++i) {
+                tags[i] = localStorage.key(i);
+            } // end for
+
+            // build list of links
+            for (let tag in tags) {
+                let txt = localStorage.getItem(tags[tag]);
+                let obj = JSON.parse(txt);
+                cnt++;
+                if(cnt%2==0) output += "<tr><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.year + "</td><td>" + "<a href='" + obj.url + "' target='_blank'>" + obj.url + "</a>" + "</td></tr>";
+                else output += "<tr class='oddrow'><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.year + "</td><td>" + "<a href='" + obj.url + "' target='_blank'>" + obj.url + "</a>" + "</td></tr>";
+            } // end for
+            //output += "</table>"
+            document.getElementById("display").innerHTML = output;
+        } // end function loadSearches
+
+        function clearAllSearches() {
+            localStorage.clear();
+            let output = "<table><tr><th>Title</th><th>Author</th><th>Year</th><th>URL</th></tr>";
+            document.getElementById("display").innerHTML = output;
+            alert("All items were removed!");
+        }
+
+    </script>
+</head>
+
+<body>
+    <form action="#">
+        <p>
+            <a href="https://leo4545525.github.io/myhome/00957033-HW7-2.html">Github Link</a><br>
+            <label>Book Title:<input type="text" id="Title"></label>
+            <label>Author(s):<input type="text" id="Author"></label>
+            <label>Year:<input type="number" id="Year"></label>
+            <label>Book URL:<input type="url" id="URL"></label>
+        </p>
+        <p>
+            <input type="button" value="Add New Item" id="addButton" onclick="saveSearch()">
+            <input type="button" value="Remove All Items" id="removeAllButton" onclick="clearAllSearches()">
+        </p>
+    </form>
+    <hr>
+    <div id="display">
+    </div>
+</body>
+
+</html>

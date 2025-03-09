@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Doraemon</title>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+        img {
+            width: 300px;
+            height: 300px;
+        }
+
+        div {
+            font-size: 20px;
+            font-weight: bold;
+            color: navy;
+            font-family: Helvetica, "Microsoft YaHei", "LiHei Pro", TW-Kai;
+            text-align: center;
+            width: 300px;
+        }
+    </style>
+    <script>
+        let tools = ["任意門", "時光機", "竹蜻蜓", "時光布", "記憶麵包", "縮小燈", "翻譯蒟蒻", "如果電話亭", "穿透環", "更衣照相機"];
+        let index = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
+        let myLet;
+        function start() {
+            myLet = setInterval(set, 1000);
+        }
+
+        function set() {
+            let random_value = Math.floor(Math.random() * 10);
+            document.getElementById("accessory").setAttribute("src", index[random_value] + ".png");
+            document.getElementById("messages").innerHTML = "<p>" + tools[random_value] + "</p>";
+        }
+
+
+        addEventListener("load", start, false);
+
+    </script>
+</head>
+
+<body>
+
+    <audio controls>
+        <source src="doraemon-bg.mp3" type="audio/mp3">
+    </audio><br>
+    <img id="accessory" src="00.png" alt="accessory">
+
+    <div id="messages"></div>
+
+
+
+</body>
+
+</html>
